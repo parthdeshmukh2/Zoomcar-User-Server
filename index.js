@@ -1,9 +1,9 @@
 const express = require("express");
-const connect = require("./configs/db");
+const connect = require("./configs/db.js");
 const cors = require("cors");
 const PORT = process.env.PORT || 8080;
-const userController = require("./controllers/user.controller");
-const { register, login } = require("./controllers/auth.controller");
+const userController = require("./Routes/user.Routes.js");
+
 
 const app = express();
 
@@ -14,12 +14,8 @@ app.get('/', async(req, res)=>{
   res.send("Home");
 })
 
-app.post("/register", register);
-app.post("/login", login);
 
-
-
-app.use("/users", userController);
+app.use("/user", userController);
 
 app.listen(PORT, async () => {
   try {
